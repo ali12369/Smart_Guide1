@@ -1,0 +1,19 @@
+.allHeader{
+    width: 100%;
+    display: flex;  
+    justify-content: space-between;
+    height: 10vh;
+    background-color: gainsboro ;
+}
+.logo{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logout{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
