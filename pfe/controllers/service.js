@@ -7,12 +7,13 @@ const route = require("express").Router();
 route.post("/add_service", async (req, res, next) => {
   
   try {
-    const { nom, tel, email, time } = req.body;
+    const { name , catégories , géocodes , location , genre  } = req.body;
     const newService = new serviceModel({
-      nom,
-      tel,
-      email,
-      time,
+      name , 
+      catégories , 
+      géocodes , 
+      location , 
+      genre 
     });
     serviceModel.create(newService).then((RESPONSE)=>{
       res.status(200).json({ message: 'service created successfully' });

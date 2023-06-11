@@ -7,12 +7,13 @@ const route = require("express").Router();
 route.post("/new_medical", async (req, res, next) => {
   
   try {
-    const { name, email, time, tel } = req.body;
+    const { name , catégories , géocodes , location , genre  } = req.body;
     const newMedical = new medicalModel({
-      name,
-      email,
-      tel,
-      time,
+      name ,
+      catégories ,
+      géocodes ,
+        location ,
+        genre ,
     });
     medicalModel.create(newMedical).then((RESPONSE)=>{
       res.status(200).json({ message: 'medical created successfully' });

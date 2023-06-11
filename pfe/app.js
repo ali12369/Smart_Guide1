@@ -54,7 +54,7 @@ app.get('/api/content', (req, res) => {
 
 app.post('/create_food', (req, res) => {
  
-  const {id ,  nom, tel, email, time, genre } = req.body;
+  const {name , catégories , géocodes , location , genre  } = req.body;
 
   
   res.status(200).json({ message: 'Food created successfully' });
@@ -90,7 +90,7 @@ app.post('/create_user', (req, res) => {
 });
 app.get('/get_all_food', (req, res) => {
  
-  const { id , nom, tel, email, time, genre } = req.body;
+  const { name , catégories , géocodes , location , genre  } = req.body;
 
   
   res.status(200).json({ message: 'Food created successfully' });

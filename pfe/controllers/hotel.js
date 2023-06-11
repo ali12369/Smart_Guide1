@@ -6,13 +6,13 @@ const route = require("express").Router();
 route.post("/add_hotel", async (req, res, next) => {
   
   try {
-    const { nom, tel, email, time, qualibre } = req.body;
+    const { name , catégories , géocodes , location , genre  } = req.body;
     const newHotel = new hotelModel({
-      nom,
-      email,
-      tel,
-      time,
-      qualibre,
+      name , 
+      catégories , 
+      géocodes , 
+      location , 
+      genre ,
     });
     hotelModel.create(newHotel).then((RESPONSE)=>{
       res.status(200).json({ message: 'hotel created successfully' });

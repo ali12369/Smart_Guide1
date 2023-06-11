@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
 const serviceSchema = new mongoose.Schema({
-  nom: { type: String, required: [true, "name is required"] },
-  tel: { type: Number, required: [true, "tel is required"] },
-  email: { type: String, required: [true, "email is required"] },
-  time: { type: String, required: [true, "time is required"] },
+  name : { type: String, required: [true, "name is required"] },
+  catégories: { type: String, required: [true, "tel is required"] },
+  géocodes: { type: String, required: [true, "email is required"] },
+  location: { type: String, required: [true, "time is required"] },
+  genre: { type: String, required: [true, "genre is required"] },
 });
 
 const serviceModel = mongoose.model("service", serviceSchema);
