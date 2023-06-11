@@ -19,7 +19,7 @@ const SignUp = (props) => {
 
     const [user, setUser] = useState(initUser);
     const sendData = async () => {
-        let result = await axios.post("http://localhost:5000/user/signup/",user);
+        let result = await axios.post("http://localhost:5001/user/create_user/",user);
         console.log(result);
     };
 

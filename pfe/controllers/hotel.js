@@ -62,13 +62,13 @@ route.delete(
 
 // get all hotels
 
-// route.get(
-//   "/all_hotels",
-//   catchAsyncError(async (req, res, next) => {
-//     const hotels = await hotelModel.find({});
-//     hotels && res.status(200).json(hotels);
-//   })
-// );
+route.get(
+  "/all_hotels",
+  catchAsyncError(async (req, res, next) => {
+    const hotels = await hotelModel.find({});
+    hotels && res.status(200).json(hotels);
+  })
+);
 const allHotels = async (req, res, next) => {
   try {
     const hotels = await hotelModel.find({});
