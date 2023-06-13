@@ -9,6 +9,8 @@ const serviceRoute = require("./controllers/service");
 const adminstrationRoute = require("./controllers/adminstration");
 const foodRoute = require("./controllers/food");
 const medicalRoute = require("./controllers/medical");
+const feedbackRoute = require("./controllers/feedback");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
@@ -25,6 +27,7 @@ app.use("/service", serviceRoute);
 app.use("/adminstration", adminstrationRoute);
 app.use("/food", foodRoute);
 app.use("/medical", medicalRoute);
+app.use("/feedback", feedbackRoute);
 // app.use(ErrorHandler);
 
 
@@ -43,6 +46,8 @@ app.get('/api/content', (req, res) => {
     content = serviceRoute.allServices();
   } else if (category === 'administration') {
     content = administrationRoute.allAdministrations();
+  } else if (category === 'user') {
+    content = administrationRoute.allUsers();
   } 
 
   // Return content in response

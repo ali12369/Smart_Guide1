@@ -59,13 +59,13 @@ route.delete(
 
 // get all
 
-// route.get(
-//   "/get_all_medical",
-//   catchAsyncError(async (req, res, next) => {
-//     const medical = await medicalModel.find({});
-//     medical && res.status(200).json(medical);
-//   })
-// );
+route.get(
+  "/get_all_medical",
+  catchAsyncError(async (req, res, next) => {
+    const medical = await medicalModel.find({});
+    medical && res.status(200).json(medical);
+  })
+);
 const getAllMedical = async (req, res, next) => {
   try {
     const medical = await medicalModel.find({});

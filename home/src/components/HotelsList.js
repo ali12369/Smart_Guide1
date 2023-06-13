@@ -155,7 +155,7 @@ export default function HotelsList() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Clients", "Medicals", "Restaurants", "Hotels"].map(
+          {["Clients", "Medicals", "Restaurants", "Hotels" , "Entreprises"].map(
             (text, index) => (
               <ListItem key={text} disablePadding>
                 <Link
@@ -175,7 +175,7 @@ export default function HotelsList() {
         </List>
         <Divider />
         <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
+          {["feedBack"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>

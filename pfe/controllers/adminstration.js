@@ -56,13 +56,13 @@ route.delete(
 );
 
 // get all
-// route.get(
-//   "/get_all_adminstrations",
-//   catchAsyncError(async (req, res, next) => {
-//     const adminstration = await adminstrationModel.find({});
-//     adminstration && res.status(200).json(adminstration);
-//   })
-// );
+route.get(
+  "/get_all_adminstrations",
+  catchAsyncError(async (req, res, next) => {
+    const adminstration = await adminstrationModel.find({});
+    adminstration && res.status(200).json(adminstration);
+  })
+);
 const allAdministrations = async (req, res, next) => {
   try {
     const administrations = await adminstrationModel.find({});

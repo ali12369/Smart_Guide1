@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const UserModel = require("../models/user");
 const ErrorHandler = require("../utils/ErrorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncError");
 const sendToken = require("../utils/jwtToken");
@@ -113,7 +113,14 @@ route.put("/confirm_user/:id", async (req, res, next) => {
     return next(new ErrorHandler(error.message, 500));
   }
 });
-
+// get all
+route.get(
+  "/get_all_user",
+  catchAsyncErrors(async (req, res, next) => {
+    const user = await UserModel.find({});
+    user && res.status(200).json(user);
+  }) 
+);
 route.post(
   "/login_user",
   catchAsyncErrors(async (req, res, next) => {

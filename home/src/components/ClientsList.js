@@ -20,6 +20,16 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import LabelImportantIcon from "@mui/icons-material/LabelImportant";
 import { Link } from "react-router-dom";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import axios from "axios";
 
 const drawerWidth = 240;
 
@@ -71,6 +81,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function ClientsList() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [rows, setRows] = React.useState([]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -79,6 +90,27 @@ export default function ClientsList() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5001/user/get_all_user"
+      );
+      setRows(response.data);
+      console.log(rows);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  React.useEffect(() => {
+    fetchData();
+  }, []);
+
+  React.useEffect(() => {
+    console.log(rows);
+  }, [rows]);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -123,7 +155,7 @@ export default function ClientsList() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Clients", "Medicals", "Restaurants", "Hotels"].map(
+          {["Clients", "Medicals", "Restaurants", "Hotels" , "Entreprises"].map(
             (text, index) => (
               <ListItem key={text} disablePadding>
                 <Link
@@ -143,7 +175,7 @@ export default function ClientsList() {
         </List>
         <Divider />
         <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
+          {["feedBack"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
@@ -157,7 +189,41 @@ export default function ClientsList() {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <Typography paragraph>ClientsList ...</Typography>
+        <Typography variant="h5">Clients List :</Typography>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>client name</TableCell>
+                <TableCell align="left">email</TableCell>
+                <TableCell align="left">password</TableCell>
+                <TableCell align="left">role</TableCell>
+                <TableCell align="left">Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows &&
+                rows.map((row) => (
+                  <TableRow
+                    key={row._id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="left">{row.fullname}</TableCell>
+                    <TableCell align="left">{row.email}</TableCell>
+                    <TableCell align="left">{row.password}</TableCell>
+                    <TableCell align="left">{row.isAdmin}</TableCell>
+                    <TableCell align="left">
+                      <DeleteIcon />
+                      <EditIcon style={{ marginLeft: "20px" }} />
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Main>
     </Box>
   );

@@ -14,7 +14,7 @@ function Location() {
           const userLatitude = position.coords.latitude;
           const userLongitude = position.coords.longitude;
           setLatitude(userLatitude);
-          setLongitude(userLongitude)
+          setLongitude(userLongitude);
         },
         (error) => {
           console.error("Erreur de géolocalisation :", error);

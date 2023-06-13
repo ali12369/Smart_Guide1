@@ -9,12 +9,14 @@ import Client from "./pages/client";
 import Admin from "./pages/admin";
 import User from "./pages/User";
 import Map from "./pages/map";
-
 import SignUp from "./pages/SignUp";
 import ClientsList from "./components/ClientsList";
 import HotelsList from "./components/HotelsList";
 import RestaurantsList from "./components/RestaurantsList";
 import MedicalsList from "./components/MedicalsList";
+import EntreprisesList from "./components/EntreprisesList";
+import Contact from "./pages/contactus" ; 
+
 
 function App() {
   return (
@@ -32,6 +34,9 @@ function App() {
         <Route path="/HotelsList" element={<HotelsList />} />
         <Route path="/RestaurantsList" element={<RestaurantsList />} />
         <Route path="/MedicalsList" element={<MedicalsList />} />
+        <Route path="/EntreprisesList" element={<EntreprisesList />} /> 
+        <Route path="/Contactus" element={<Contact />} /> 
+
       </Routes>
     </BrowserRouter>
   );
