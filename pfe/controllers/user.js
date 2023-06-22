@@ -7,10 +7,9 @@ const jwt = require("jsonwebtoken");
 const route = require("express").Router();
 
 route.post("/createUser", async (req, res, next) => {
-  
-  try{
+  try {
     const { fullname, email, password } = req.body;
-    const userEmail = await User.findOne({ email });
+    const userEmail = await UserModel.findOne({ email });
     if (userEmail) {
       return next(new ErrorHandler("User already exist", 400));
     }
@@ -21,30 +20,27 @@ route.post("/createUser", async (req, res, next) => {
       password: password,
     };
 
-    User.create(user).then((res)=>{
+    UserModel.create(user).then((res) => {
       // res.status(200).json({ message: 'user created successfully' });
-      console.log(res)
-    })
-  }catch(error){
-    console.log(error)
+      console.log(res);
+    });
+  } catch (error) {
+    console.log(error);
   }
-    
 
-    // const activationToken = createActivationToken(user);
-    // const activationUrl = `http://localhost:3000/activation/${activationToken}`; // hedha el path mte3 el front
+  // const activationToken = createActivationToken(user);
+  // const activationUrl = `http://localhost:3000/activation/${activationToken}`; // hedha el path mte3 el front
 
-    // try {
-    //   // await sendMail({
-    //   //   email: user.email,
-    //   //   subject: "Activate your Account",
-    //   //   message: `Hello ${user.fullname}, please click on the link to activate your account: ${activationUrl}`,
-    //   // });
-    // } catch (error) {console.error(error); // Log the error to the console
-    // res.send(error);
-    // }
-  });
-  
-
+  // try {
+  //   // await sendMail({
+  //   //   email: user.email,
+  //   //   subject: "Activate your Account",
+  //   //   message: `Hello ${user.fullname}, please click on the link to activate your account: ${activationUrl}`,
+  //   // });
+  // } catch (error) {console.error(error); // Log the error to the console
+  // res.send(error);
+  // }
+});
 
 // create activation token
 const createActivationToken = (user) => {
@@ -119,7 +115,7 @@ route.get(
   catchAsyncErrors(async (req, res, next) => {
     const user = await UserModel.find({});
     user && res.status(200).json(user);
-  }) 
+  })
 );
 route.post(
   "/login_user",

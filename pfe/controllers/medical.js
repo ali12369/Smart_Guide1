@@ -5,22 +5,20 @@ const ErrorHandler = require("../utils/ErrorHandler");
 const route = require("express").Router();
 
 route.post("/new_medical", async (req, res, next) => {
-  
   try {
-    const { name , catégories , géocodes , location , genre  } = req.body;
+    const { name, categories, geocodes, location } = req.body;
     const newMedical = new medicalModel({
-      name ,
-      catégories ,
-      géocodes ,
-        location ,
-        genre ,
+      name,
+      categories,
+      geocodes,
+      location,
     });
-    medicalModel.create(newMedical).then((RESPONSE)=>{
-      res.status(200).json({ message: 'medical created successfully' });
-    }) 
+    medicalModel.create(newMedical).then(() => {
+      res.status(201).json("successfully created !!! ");
+      console.log(res);
+    });
   } catch (error) {
-    console.error(error); // Log the error to the console
-    res.status(500).send("An error occurred");;
+    console.log(error); // Log the error to the console
   }
 });
 
@@ -49,8 +47,8 @@ route.delete(
   catchAsyncError(async (req, res, next) => {
     const id = req.params.id;
     try {
-      await medicalModel.findByIdAndDelete(id);
-      res.status(200).json({ message: "medical is deleted" });
+      const searchedItem = await medicalModel.findByIdAndDelete(id);
+      res.status(200).json({ message: `${searchedItem} medical is deleted` });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
     }
@@ -71,17 +69,17 @@ const getAllMedical = async (req, res, next) => {
     const medical = await medicalModel.find({});
 
     if (medical.length === 0) {
-      return res.status(404).json({ message: 'No medical data found.' });
+      return res.status(404).json({ message: "No medical data found." });
     }
 
     res.status(200).json(medical);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal server error.' });
+    res.status(500).json({ message: "Internal server error." });
   }
 };
 
-route.get('/get_all_medical', catchAsyncError(getAllMedical));
+route.get("/get_all_medical", catchAsyncError(getAllMedical));
 
 // get one
 

@@ -30,6 +30,7 @@ import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 const drawerWidth = 240;
 
@@ -111,6 +112,18 @@ export default function RestaurantsList() {
   React.useEffect(() => {
     console.log(rows);
   }, [rows]);
+
+  const deleteItem = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5001/food/delete_food/${id}`
+      );
+      console.log(response);
+      fetchData();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -215,7 +228,7 @@ export default function RestaurantsList() {
                     <TableCell align="left">{row.geocodes}</TableCell>
                     <TableCell align="left">{row.location}</TableCell>
                     <TableCell align="left">
-                      <DeleteIcon />
+                    <DeleteIcon onClick={() => deleteItem(row._id)} />
                       <EditIcon style={{ marginLeft: "20px" }} />
                     </TableCell>
                   </TableRow>

@@ -30,6 +30,7 @@ import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 const drawerWidth = 240;
 
@@ -112,6 +113,18 @@ export default function MedicalsList() {
     console.log(rows);
   }, [rows]);
 
+  const deleteItem = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5001/medical/delete_medical/${id}`
+      );
+      console.log(response);
+      fetchData();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -155,7 +168,7 @@ export default function MedicalsList() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Clients", "Medicals", "Restaurants", "Hotels" , "Entreprises"].map(
+          {["Clients", "Medicals", "Restaurants", "Hotels", "Entreprises"].map(
             (text, index) => (
               <ListItem key={text} disablePadding>
                 <Link
@@ -190,6 +203,12 @@ export default function MedicalsList() {
       <Main open={open}>
         <DrawerHeader />
         <Typography variant="h5">medical adress List :</Typography>
+        <Link
+          to={`/MedicalsList/AddMedical`}
+          style={{ color: "black", textDecoration: "none" }}
+        >
+          <AddCircleIcon />
+        </Link>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -215,7 +234,8 @@ export default function MedicalsList() {
                     <TableCell align="left">{row.geocodes}</TableCell>
                     <TableCell align="left">{row.location}</TableCell>
                     <TableCell align="left">
-                      <DeleteIcon />
+                      {/* <DeleteIcon /> */}
+                      <DeleteIcon onClick={() => deleteItem(row._id)} />
                       <EditIcon style={{ marginLeft: "20px" }} />
                     </TableCell>
                   </TableRow>

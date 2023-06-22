@@ -3,8 +3,8 @@ import './Cards.css';
 import CardItem from './CardItem';
 import food from '../images/food.jpg';
 import medical from '../images/medical.jpg';
-import hotel from '../images/hotel.jpg'
-
+import hotel from '../images/hotel.jpg'; 
+import parc from '../images/loisir.jpg' ; 
 
 
 
@@ -37,9 +37,9 @@ function Cards() {
             />
             
             <CardItem
-              //  src='images/img-8.jpg'
-              text='Ride through the Sahara Desert on a guided camel tour'
-              label='#'
+              src={parc}
+              text='Monuments et espaces-extérieurs'
+              label='parc et monuments '
               // path='/'
             />
           </ul>

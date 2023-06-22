@@ -155,6 +155,20 @@ export default function PersistentDrawerLeft() {
           ))}
         </List>
       </Drawer>
+
+      {/* <List>
+          
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+              
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Drawer> */}
       <Main open={open}>
         <DrawerHeader />
         <Typography paragraph></Typography>

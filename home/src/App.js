@@ -15,8 +15,9 @@ import HotelsList from "./components/HotelsList";
 import RestaurantsList from "./components/RestaurantsList";
 import MedicalsList from "./components/MedicalsList";
 import EntreprisesList from "./components/EntreprisesList";
-import Contact from "./pages/contactus" ; 
-
+import Contact from "./pages/contactus";
+import AddMedical from "./components/AddMedical";
+import AddFood from "./components/AddFood";
 
 function App() {
   return (
@@ -34,9 +35,10 @@ function App() {
         <Route path="/HotelsList" element={<HotelsList />} />
         <Route path="/RestaurantsList" element={<RestaurantsList />} />
         <Route path="/MedicalsList" element={<MedicalsList />} />
-        <Route path="/EntreprisesList" element={<EntreprisesList />} /> 
-        <Route path="/Contactus" element={<Contact />} /> 
-
+        <Route path="/EntreprisesList" element={<EntreprisesList />} />
+        <Route path="/Contactus" element={<Contact />} />
+        <Route path="/MedicalsList/AddMedical" element={<AddMedical />} />
+        <Route path="/RestaurantsList/AddFood" element={<AddFood />} />
       </Routes>
     </BrowserRouter>
   );

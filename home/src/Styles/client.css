@@ -1,0 +1,30 @@
+.loc{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 70px;
+    align-items: center;
+}
+p{
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+.bmap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+.mapButton{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(20, 20, 164);
+    width: 280%;
+    border-radius: 8px ;
+    border: solid 4px black;
+
+}

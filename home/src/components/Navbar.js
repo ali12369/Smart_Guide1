@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from './Button';
-import { Link } from 'react-router-dom';
-import './Navbar.css';
-import img from '../images/deltawebit.png'
-import icon from '../images/menu-bar.png'
-
+import React, { useState, useEffect } from "react";
+import { Button } from "./Button";
+import { Link } from "react-router-dom";
+import "./Navbar.css";
+import img from "../images/deltawebit.png";
+import icon from "../images/menu-bar.png";
+import icon2 from "../images/icon.png";
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
@@ -24,46 +24,45 @@ function Navbar() {
     showButton();
   }, []);
 
-  window.addEventListener('resize', showButton);
+  window.addEventListener("resize", showButton);
 
   return (
     <>
-      <nav className='navbar'>
-        <div className='navbar-container'>
-          <Link to='' className='navbar-logo' onClick={closeMobileMenu}>
-          <img src={img} alt="error" id='logo' />
-          
-            <i class='fab fa-typo3' />
+      <nav className="navbar">
+        <div className="navbar-container">
+          <Link to="" className="navbar-logo" onClick={closeMobileMenu}>
+            <img src={img} alt="error" id="logo" />
+
+            <i class="fab fa-typo3" />
           </Link>
-          <div className='nav-points'> 
-            
-            <div className="iconMob"  onClick={handleClick}><img src= {icon} id='redicon' /></div>
+          <div className="nav-points">
+            <div className="iconMob" onClick={handleClick}>
+              <img src={icon} id="redicon" />
+            </div>
           </div>
-          <div className='menu-icon' onClick={handleClick}>
-            <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+          <div className="menu-icon" onClick={handleClick}>
+            <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
-          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-          
-            <li className='nav-item'>
+          <ul className={click ? "nav-menu active" : "nav-menu"}>
+            <li className="nav-item">
               <Link
-                to='/connexion'
-                className='nav-links'
+                to="/connexion"
+                className="nav-links"
                 onClick={closeMobileMenu}
               >
-                connexion
+                Ali
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link
+            <li className="nav-item">
+              {/* <Link
                 to='/SignUp'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
                 s'inscrire
-              </Link>
+              </Link> */}
+              <img src= {icon2} />
             </li>
-            
-        
           </ul>
         </div>
       </nav>

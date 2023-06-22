@@ -8,13 +8,13 @@ const route = require("express").Router();
 route.post("/create_food", async (req, res, next) => {
 
   try {
-    const { name , catégories , géocodes , location , genre  } = req.body;
+    const { name , categories , geocodes , location   } = req.body;
     const newFood = new foodModel({
       name ,
-       catégories , 
-       géocodes , 
+       categories , 
+       geocodes , 
        location , 
-       genre ,
+       
     });
     foodModel.create(newFood).then((RESPONSE)=>{
       res.status(200).json({ message: 'food created successfully' });
