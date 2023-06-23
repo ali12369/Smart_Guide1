@@ -50,18 +50,18 @@ function Navbar() {
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Ali
+                connexion
               </Link>
             </li>
             <li className="nav-item">
-              {/* <Link
+               <Link
                 to='/SignUp'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
                 s'inscrire
-              </Link> */}
-              <img src= {icon2} />
+              </Link> 
+              
             </li>
           </ul>
         </div>

@@ -78,7 +78,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function ClientsList() {
+export default function FeedBackList() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [rows, setRows] = React.useState([]);
@@ -94,8 +94,7 @@ export default function ClientsList() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5001/user/get_all_user"
-      );
+        "http://localhost:5001/feedback/all_Msg") ;
       setRows(response.data);
       console.log(rows);
       console.log(response.data);
@@ -114,7 +113,7 @@ export default function ClientsList() {
   const deleteItem = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5001/user/delete_user/${id}`
+        `http://localhost:5001/delete_msg/delete_msg/${id}`
       );
       console.log(response);
       fetchData();
@@ -165,7 +164,7 @@ export default function ClientsList() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Clients", "Medicals", "Restaurants", "Hotels" , "Entreprises"].map(
+          {["Clients", "Medicals", "Restaurants", "Hotels", "Entreprises"].map(
             (text, index) => (
               <ListItem key={text} disablePadding>
                 <Link
@@ -199,16 +198,16 @@ export default function ClientsList() {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <Typography variant="h5">Clients List :</Typography>
+        <Typography variant="h5">feedBack List :</Typography>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>client name</TableCell>
-                <TableCell align="left">email</TableCell>
-                <TableCell align="left">password</TableCell>
-                <TableCell align="left">role</TableCell>
-                <TableCell align="left">Actions</TableCell>
+                <TableCell>Nom</TableCell>
+                <TableCell align="left">prénom</TableCell>
+                <TableCell align="left">email </TableCell>
+                <TableCell align="left">message </TableCell>
+                <TableCell align="left">Actions </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -219,12 +218,11 @@ export default function ClientsList() {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      {row.name}
+                      {row.firstName}
                     </TableCell>
-                    <TableCell align="left">{row.fullname}</TableCell>
+                    <TableCell align="left">{row.lastName}</TableCell>
                     <TableCell align="left">{row.email}</TableCell>
-                    <TableCell align="left">{row.password}</TableCell>
-                    <TableCell align="left">{row.isAdmin}</TableCell>
+                    <TableCell align="left">{row.msg}</TableCell>
                     <TableCell align="left">
                     <DeleteIcon onClick={() => deleteItem(row._id)} />
                       <EditIcon style={{ marginLeft: "20px" }} />

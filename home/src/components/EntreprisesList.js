@@ -111,7 +111,17 @@ export default function EntreprisesList() {
   React.useEffect(() => {
     console.log(rows);
   }, [rows]);
-
+  const deleteItem = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5001/adminstration/delete_adminstration/${id}`
+      );
+      console.log(response);
+      fetchData();
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -215,7 +225,7 @@ export default function EntreprisesList() {
                     <TableCell align="left">{row.geocodes}</TableCell>
                     <TableCell align="left">{row.location}</TableCell>
                     <TableCell align="left">
-                      <DeleteIcon />
+                    <DeleteIcon onClick={() => deleteItem(row._id)} />
                       <EditIcon style={{ marginLeft: "20px" }} />
                     </TableCell>
                   </TableRow>

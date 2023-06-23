@@ -18,6 +18,8 @@ import EntreprisesList from "./components/EntreprisesList";
 import Contact from "./pages/contactus";
 import AddMedical from "./components/AddMedical";
 import AddFood from "./components/AddFood";
+import { Feedback } from "@mui/icons-material";
+import FeedBackList from "./components/FeedBackList";
 
 function App() {
   return (
@@ -39,6 +41,7 @@ function App() {
         <Route path="/Contactus" element={<Contact />} />
         <Route path="/MedicalsList/AddMedical" element={<AddMedical />} />
         <Route path="/RestaurantsList/AddFood" element={<AddFood />} />
+        <Route path="/FeedBackList" element={<FeedBackList />} />
       </Routes>
     </BrowserRouter>
   );
